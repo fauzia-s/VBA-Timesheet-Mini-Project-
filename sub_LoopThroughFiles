@@ -1,0 +1,38 @@
+
+Sub LoopThroughFiles()
+    
+    Dim FilePath As String
+    Dim FileName As String
+    Dim Row
+    
+    Dim Month As String
+    Dim EmpName
+    Dim ProjectName As String
+    Dim HoursBilled As Double
+    Dim PTO As Double
+
+    Month = Format(Date, "mmm")
+     
+    FilePath = "/Users/Atik/Documents/FAUZIA/QBiz docs/Presentation/Timesheets/"
+    FileName = Dir(FilePath)
+    
+    Do While Len(FilePath & FileName) > 0
+        If FileName = "zMasterSheet.xlsm" Then
+            Exit Sub
+       End If
+       MsgBox FilePath & FileName
+       Workbooks.Open (FilePath & FileName)
+
+       EmpName = Worksheets(Month).Value(A7)
+       ProjectName = Worksheets(Month).Value(A9)
+       HoursBilled = Worksheets(Month).Value(AG9)
+       PTO = Worksheets(Month).Value(AG29)
+'Assuming we have only one project per employee per month
+      Row = Sheet1.Cells(Rows.Count, 1).End(xlUp).Offset(1, 0).Row
+      'ActiveSheet.Paste Destination:=Worksheets("Sheet1").Range(Cells(Row, 1), Cells(Row, 4))
+      MsgBox Row
+        
+    Loop
+
+    
+End Sub
