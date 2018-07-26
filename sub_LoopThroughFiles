@@ -23,15 +23,18 @@ Sub LoopThroughFiles()
        MsgBox FilePath & FileName
        Workbooks.Open (FilePath & FileName)
 
-       EmpName = Worksheets(Month).Value(A7)
-       ProjectName = Worksheets(Month).Value(A9)
-       HoursBilled = Worksheets(Month).Value(AG9)
-       PTO = Worksheets(Month).Value(AG29)
+       EmpName = Worksheets(Month).Cells(7, "A").Value
+       ProjectName = Worksheets(Month).Cells(9, "A").Value
+       HoursBilled = Worksheets(Month).Cells(9, "AG").Value
+       PTO = Worksheets(Month).Cells(29, "AG").Value
+
 'Assuming we have only one project per employee per month
       Row = Sheet1.Cells(Rows.Count, 1).End(xlUp).Offset(1, 0).Row
       'ActiveSheet.Paste Destination:=Worksheets("Sheet1").Range(Cells(Row, 1), Cells(Row, 4))
-      MsgBox Row
+  
         
+      'Iterate through the next file in the directory
+      FileName = Dir
     Loop
 
     
