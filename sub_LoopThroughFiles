@@ -1,4 +1,3 @@
-
 Sub LoopThroughFiles()
     
     Dim FilePath As String
@@ -11,31 +10,54 @@ Sub LoopThroughFiles()
     Dim HoursBilled As Double
     Dim PTO As Double
 
+    Dim i As Integer    'iterator
+    
     Month = Format(Date, "mmm")
      
     FilePath = "/Users/Atik/Documents/FAUZIA/QBiz docs/Presentation/Timesheets/"
-    FileName = Dir(FilePath)
+   'Test FileName = Dir(FilePath)
+    FileName = "Test.xlsx"
     
-    Do While Len(FilePath & FileName) > 0
+    'Do While Len(FilePath & FileName) > 0
         If FileName = "zMasterSheet.xlsm" Then
             Exit Sub
        End If
        MsgBox FilePath & FileName
        Workbooks.Open (FilePath & FileName)
 
-       EmpName = Worksheets(Month).Cells(7, "A").Value
+ EmpName = Worksheets(Month).Cells(7, "A").Value
        ProjectName = Worksheets(Month).Cells(9, "A").Value
        HoursBilled = Worksheets(Month).Cells(9, "AG").Value
        PTO = Worksheets(Month).Cells(29, "AG").Value
-
+'MsgBox EmpName
+'MsgBox ProjectName
+'MsgBox HoursBilled
+'MsgBox PTO
+       ActiveWorkbook.Close
+       
+      Workbooks.Open (FilePath & "zMasterSheet.xlsm")
 'Assuming we have only one project per employee per month
-      Row = Sheet1.Cells(Rows.Count, 1).End(xlUp).Offset(1, 0).Row
+      'Row = Sheet1.Cells(Rows.Count, 1).End(xlUp).Offset(1, 0).Row
       'ActiveSheet.Paste Destination:=Worksheets("Sheet1").Range(Cells(Row, 1), Cells(Row, 4))
   
+      'Assign values from the variables to the new row
+      i = 4
+      Do While (Application.ActiveSheet.Range("A" & i).Value = "")
+        Application.ActiveSheet.Range("B" & i).Select
+        Application.Selection.Value = EmpName
+        Application.ActiveSheet.Range("C" & i).Select
+        Application.Selection.Value = EmpName
+        Application.ActiveSheet.Range("D" & i).Select
+        Application.Selection.Value = EmpName
+        Application.ActiveSheet.Range("E" & i).Select
+        Application.Selection.Value = EmpName
+        i = i + 1
+     Loop
         
       'Iterate through the next file in the directory
-      FileName = Dir
-    Loop
+      
+      'FileName = Dir
+    'Loop
 
-    
+    MsgBox "EndSub"
 End Sub
