@@ -1,3 +1,12 @@
+Sub ExtractMonth()
+
+End Sub
+
+
+Sub GenReport()
+
+End Sub
+
 Sub LoopThroughFiles()
     
     Dim FilePath As String
@@ -15,10 +24,10 @@ Sub LoopThroughFiles()
     Month = Format(Date, "mmm")
      
     FilePath = "/Users/Atik/Documents/FAUZIA/QBiz docs/Presentation/Timesheets/"
-   'Test FileName = Dir(FilePath)
-    FileName = "Test.xlsx"
+    FileName = Dir(FilePath)
+    'FileName = "Test.xlsx"
     
-    'Do While Len(FilePath & FileName) > 0
+    Do While Len(FilePath & FileName) > 0
         If FileName = "zMasterSheet.xlsm" Then
             Exit Sub
        End If
@@ -42,22 +51,33 @@ Sub LoopThroughFiles()
   
       'Assign values from the variables to the new row
       i = 4
-      Do While (Application.ActiveSheet.Range("A" & i).Value = "")
-        Application.ActiveSheet.Range("B" & i).Select
-        Application.Selection.Value = EmpName
-        Application.ActiveSheet.Range("C" & i).Select
-        Application.Selection.Value = EmpName
-        Application.ActiveSheet.Range("D" & i).Select
-        Application.Selection.Value = EmpName
-        Application.ActiveSheet.Range("E" & i).Select
-        Application.Selection.Value = EmpName
-        i = i + 1
+      Do While i >= 4
+        If Application.ActiveSheet.Range("A" & i).Value <> "" Then
+             i = i + 1
+             MsgBox i
+        Else
+             Exit Do
+        End If
      Loop
+     
+        Application.ActiveSheet.Range("A" & i).Select
+        Application.Selection.Value = EmpName
+        Application.ActiveSheet.Range("B" & i).Select
+        Application.Selection.Value = Month
+        Application.ActiveSheet.Range("C" & i).Select
+        Application.Selection.Value = ProjectName
+        Application.ActiveSheet.Range("D" & i).Select
+        Application.Selection.Value = HoursBilled
+        Application.ActiveSheet.Range("E" & i).Select
+        Application.Selection.Value = PTO
+       
+     
         
       'Iterate through the next file in the directory
       
-      'FileName = Dir
-    'Loop
+      FileName = Dir
+  Loop
 
     MsgBox "EndSub"
 End Sub
+
