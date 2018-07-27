@@ -1,19 +1,10 @@
-Sub ExtractMonth()
-
-End Sub
-
-
-Sub GenReport()
-
-End Sub
-
-Sub LoopThroughFiles()
+Public Sub LoopThroughFiles(Mon As String)
     
     Dim FilePath As String
     Dim FileName As String
     Dim Row
     
-    Dim Month As String
+    Dim Month
     Dim EmpName
     Dim ProjectName As String
     Dim HoursBilled As Double
@@ -21,8 +12,13 @@ Sub LoopThroughFiles()
 
     Dim i As Integer    'iterator
     
-    Month = Format(Date, "mmm")
-     
+    If Mon = "" Then
+        Month = Format(Date, "mmm")
+    Else
+        Month = Mon
+   End If
+   
+
     FilePath = "/Users/Atik/Documents/FAUZIA/QBiz docs/Presentation/Timesheets/"
     FileName = Dir(FilePath)
     'FileName = "Test.xlsx"
@@ -34,12 +30,12 @@ Sub LoopThroughFiles()
        MsgBox FilePath & FileName
        Workbooks.Open (FilePath & FileName)
 
- EmpName = Worksheets(Month).Cells(7, "A").Value
+       EmpName = Worksheets(Month).Cells(7, "A").Value
        ProjectName = Worksheets(Month).Cells(9, "A").Value
        HoursBilled = Worksheets(Month).Cells(9, "AG").Value
        PTO = Worksheets(Month).Cells(29, "AG").Value
 'MsgBox EmpName
-'MsgBox ProjectName
+'MsgBox EmpName & ProjectName & HoursBilled & PTO
 'MsgBox HoursBilled
 'MsgBox PTO
        ActiveWorkbook.Close
@@ -54,7 +50,7 @@ Sub LoopThroughFiles()
       Do While i >= 4
         If Application.ActiveSheet.Range("A" & i).Value <> "" Then
              i = i + 1
-             MsgBox i
+             'MsgBox i
         Else
              Exit Do
         End If
