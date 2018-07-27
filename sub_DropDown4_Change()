@@ -1,0 +1,9 @@
+Public Sub DropDown4_Change()
+        Dim TempMon
+        TempMon = Sheet1.Cells.Range("D25")
+        TempMon = 10 + TempMon
+        Mon = Sheet1.Cells.Range("H" & TempMon)
+        MsgBox Mon
+    
+        LoopThroughFiles (Mon)
+End Sub
