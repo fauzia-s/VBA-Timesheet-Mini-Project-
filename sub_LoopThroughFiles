@@ -34,6 +34,7 @@ Public Sub LoopThroughFiles()
     FileName = Dir(FilePath)
     'FileName = "Test.xlsx"
     
+    On Error GoTo eh
     Do While Len(FilePath & FileName) > 0
         If FileName = "zMasterSheet.xlsm" Then
             Exit Sub
@@ -86,6 +87,9 @@ Public Sub LoopThroughFiles()
   Loop
 
     MsgBox "EndSub"
+    
+eh:
+    MsgBox "No data for the month of " & Mon
 End Sub
 
 Sub ExtractData()
