@@ -18,9 +18,9 @@ Public Sub LoopThroughFiles()
     Dim i As Integer    'iterator
     
      Dim TempMon
-        TempMon = Sheet1.Cells.Range("D25")
-        TempMon = 10 + TempMon
-        Mon = Sheet1.Cells.Range("H" & TempMon)
+        TempMon = Sheet1.Cells.Range("D100")
+        TempMon = 100 + TempMon
+        Mon = Sheet1.Cells.Range("E" & TempMon)
         
     If Mon = "" Then
         Month = Format(Date, "mmm")
@@ -92,6 +92,3 @@ eh:
     MsgBox "No data for the month of " & Mon
 End Sub
 
-Sub ExtractData()
-    Call LoopThroughFiles
-End Sub
