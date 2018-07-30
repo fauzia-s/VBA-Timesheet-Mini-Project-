@@ -1,0 +1,10 @@
+Sub CreatePieChart()
+
+Dim lrow As Long
+lrow = Cells(Cells.Rows.Count, "A").End(xlUp).Row
+
+
+    ActiveSheet.Shapes.AddChart2(251, xlPie, Range("G3").Left, Range("G3").Top, 400, 300).Select
+    ActiveChart.SetSourceData Source:=Range("C3:D" & lrow)
+
+End Sub
