@@ -1,10 +1,15 @@
-Public Sub LoopThroughFiles(Mon As String)
+
+Dim Mon As String
+
+
+Public Sub LoopThroughFiles()
     
     Dim FilePath As String
     Dim FileName As String
     Dim Row
     
-    Dim Month
+    Dim Month As String
+    
     Dim EmpName
     Dim ProjectName As String
     Dim HoursBilled As Double
@@ -12,10 +17,16 @@ Public Sub LoopThroughFiles(Mon As String)
 
     Dim i As Integer    'iterator
     
+     Dim TempMon
+        TempMon = Sheet1.Cells.Range("D25")
+        TempMon = 10 + TempMon
+        Mon = Sheet1.Cells.Range("H" & TempMon)
+        
     If Mon = "" Then
         Month = Format(Date, "mmm")
     Else
         Month = Mon
+        MsgBox Mon
    End If
    
 
@@ -77,3 +88,6 @@ Public Sub LoopThroughFiles(Mon As String)
     MsgBox "EndSub"
 End Sub
 
+Sub ExtractData()
+    Call LoopThroughFiles
+End Sub
